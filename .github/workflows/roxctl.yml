@@ -1,0 +1,31 @@
+name: roxctl
+
+on:
+  workflow_dispatch:
+    endpoint:
+      description: endpoint of Central to use in format https://<endpoint>
+      default: 'https://stackrox.io'
+      required: true
+
+jobs:
+  roxctl:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for Central Login
+    steps:
+      - name: Configure Central creds for the job
+        uses: stackrox/central-login@c181c10fa65c434ea72c656edd8ce9fb4c5e6ae8 # includes custom user-agent change
+        with:
+          endpoint: ${{ inputs.endpoint }}
+          skip-tls-verify: true
+      - name: Setup roxctl by downloading it from Central to match version
+        uses: stackrox/roxctl-installer-action@07a2fe84e514f75773408b326a21940d4e2239f6 # includes custom user-agent change
+        with:
+          central-endpoint: ${{ env.ROX_ENDPOINT }}
+          central-token: ${{ env.ROX_API_TOKEN }}
+          skip-tls-verify: true
+
+      - name: whoami
+        shell: bash
+        run: |
+          roxctl central whoami
