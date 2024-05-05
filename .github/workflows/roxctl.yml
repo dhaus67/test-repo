@@ -2,10 +2,11 @@ name: roxctl
 
 on:
   workflow_dispatch:
-    endpoint:
-      description: endpoint of Central to use in format https://<endpoint>
-      default: 'https://stackrox.io'
-      required: true
+    inputs:
+      endpoint:
+        description: endpoint of Central to use in format https://<endpoint>
+        required: true
+        default: ''
 
 jobs:
   roxctl:
