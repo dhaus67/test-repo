@@ -18,12 +18,12 @@ jobs:
         id-token: write # Required for Central Login
       steps:
         - name: Configure Central creds for the job
-          uses: stackrox/central-login@c181c10fa65c434ea72c656edd8ce9fb4c5e6ae8 # includes custom user-agent change
+          uses: stackrox/central-login@v1.0.2
           with:
             endpoint: ${{ inputs.endpoint }}
             skip-tls-verify: true
         - name: Setup roxctl by downloading it from Central to match version
-          uses: stackrox/roxctl-installer-action@07a2fe84e514f75773408b326a21940d4e2239f6 # includes custom user-agent change
+          uses: stackrox/roxctl-installer-action@v1.1.2
           with:
             central-endpoint: ${{ env.ROX_ENDPOINT }}
             central-token: ${{ env.ROX_API_TOKEN }}
