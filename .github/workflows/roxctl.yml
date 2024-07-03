@@ -23,7 +23,7 @@ jobs:
             endpoint: ${{ inputs.endpoint }}
             skip-tls-verify: true
         - name: Setup roxctl by downloading it from Central to match version
-          uses: stackrox/roxctl-installer-action@v1.1.2
+          uses: stackrox/roxctl-installer-action@v1.1.3
           with:
             central-endpoint: ${{ env.ROX_ENDPOINT }}
             central-token: ${{ env.ROX_API_TOKEN }}
