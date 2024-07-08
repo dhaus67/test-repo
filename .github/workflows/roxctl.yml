@@ -18,7 +18,7 @@ jobs:
         id-token: write # Required for Central Login
       steps:
         - name: Configure Central creds for the job
-          uses: stackrox/central-login@v1.0.2
+          uses: stackrox/central-login@v1.0.3
           with:
             endpoint: ${{ inputs.endpoint }}
             skip-tls-verify: true
